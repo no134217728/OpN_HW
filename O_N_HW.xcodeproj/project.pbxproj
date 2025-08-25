@@ -13,6 +13,10 @@
 		0451723F2E5C452000F65A51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0451723D2E5C452000F65A51 /* Main.storyboard */; };
 		045172412E5C452200F65A51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 045172402E5C452200F65A51 /* Assets.xcassets */; };
 		045172442E5C452200F65A51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 045172422E5C452200F65A51 /* LaunchScreen.storyboard */; };
+		0451724C2E5C491C00F65A51 /* WebSocketMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451724B2E5C491C00F65A51 /* WebSocketMock.swift */; };
+		0451724E2E5C492C00F65A51 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451724D2E5C492C00F65A51 /* Models.swift */; };
+		045172512E5C49C400F65A51 /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 0451724F2E5C49C300F65A51 /* matches.json */; };
+		045172522E5C49C400F65A51 /* odds.json in Resources */ = {isa = PBXBuildFile; fileRef = 045172502E5C49C400F65A51 /* odds.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		045172402E5C452200F65A51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		045172432E5C452200F65A51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		045172452E5C452200F65A51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0451724B2E5C491C00F65A51 /* WebSocketMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketMock.swift; sourceTree = "<group>"; };
+		0451724D2E5C492C00F65A51 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		0451724F2E5C49C300F65A51 /* matches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = matches.json; sourceTree = "<group>"; };
+		045172502E5C49C400F65A51 /* odds.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = odds.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +67,10 @@
 				045172372E5C452000F65A51 /* AppDelegate.swift */,
 				045172392E5C452000F65A51 /* SceneDelegate.swift */,
 				0451723B2E5C452000F65A51 /* ViewController.swift */,
+				0451724B2E5C491C00F65A51 /* WebSocketMock.swift */,
+				0451724D2E5C492C00F65A51 /* Models.swift */,
+				0451724F2E5C49C300F65A51 /* matches.json */,
+				045172502E5C49C400F65A51 /* odds.json */,
 				0451723D2E5C452000F65A51 /* Main.storyboard */,
 				045172402E5C452200F65A51 /* Assets.xcassets */,
 				045172422E5C452200F65A51 /* LaunchScreen.storyboard */,
@@ -126,7 +138,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				045172442E5C452200F65A51 /* LaunchScreen.storyboard in Resources */,
+				045172512E5C49C400F65A51 /* matches.json in Resources */,
 				045172412E5C452200F65A51 /* Assets.xcassets in Resources */,
+				045172522E5C49C400F65A51 /* odds.json in Resources */,
 				0451723F2E5C452000F65A51 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,6 +155,8 @@
 				0451723C2E5C452000F65A51 /* ViewController.swift in Sources */,
 				045172382E5C452000F65A51 /* AppDelegate.swift in Sources */,
 				0451723A2E5C452000F65A51 /* SceneDelegate.swift in Sources */,
+				0451724C2E5C491C00F65A51 /* WebSocketMock.swift in Sources */,
+				0451724E2E5C492C00F65A51 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +308,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = O_N_HW/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -319,6 +336,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = O_N_HW/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

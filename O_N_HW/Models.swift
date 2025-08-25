@@ -19,3 +19,12 @@ struct Odds: Decodable {
     let teamAOdds: Decimal
     let teamBOdds: Decimal
 }
+
+struct MainData: Decodable {
+    let matchID: Int
+    let teamA: String
+    let teamB: String
+    let startTime: String
+    var teamAOdds: Decimal
+    var teamBOdds: Decimal
+}

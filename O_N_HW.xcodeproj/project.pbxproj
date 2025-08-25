@@ -17,6 +17,7 @@
 		0451724E2E5C492C00F65A51 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451724D2E5C492C00F65A51 /* Models.swift */; };
 		045172512E5C49C400F65A51 /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 0451724F2E5C49C300F65A51 /* matches.json */; };
 		045172522E5C49C400F65A51 /* odds.json in Resources */ = {isa = PBXBuildFile; fileRef = 045172502E5C49C400F65A51 /* odds.json */; };
+		045172542E5C63CD00F65A51 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045172532E5C63CD00F65A51 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		0451724D2E5C492C00F65A51 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		0451724F2E5C49C300F65A51 /* matches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = matches.json; sourceTree = "<group>"; };
 		045172502E5C49C400F65A51 /* odds.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = odds.json; sourceTree = "<group>"; };
+		045172532E5C63CD00F65A51 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				045172372E5C452000F65A51 /* AppDelegate.swift */,
 				045172392E5C452000F65A51 /* SceneDelegate.swift */,
 				0451723B2E5C452000F65A51 /* ViewController.swift */,
+				045172532E5C63CD00F65A51 /* ViewModel.swift */,
 				0451724B2E5C491C00F65A51 /* WebSocketMock.swift */,
 				0451724D2E5C492C00F65A51 /* Models.swift */,
 				0451724F2E5C49C300F65A51 /* matches.json */,
@@ -156,6 +159,7 @@
 				045172382E5C452000F65A51 /* AppDelegate.swift in Sources */,
 				0451723A2E5C452000F65A51 /* SceneDelegate.swift in Sources */,
 				0451724C2E5C491C00F65A51 /* WebSocketMock.swift in Sources */,
+				045172542E5C63CD00F65A51 /* ViewModel.swift in Sources */,
 				0451724E2E5C492C00F65A51 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

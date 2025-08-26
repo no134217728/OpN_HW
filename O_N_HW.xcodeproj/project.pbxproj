@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0434DFD32E5E0D0E004BF364 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0434DFD22E5E0D0E004BF364 /* ConfigViewController.swift */; };
 		045172382E5C452000F65A51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045172372E5C452000F65A51 /* AppDelegate.swift */; };
 		0451723A2E5C452000F65A51 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045172392E5C452000F65A51 /* SceneDelegate.swift */; };
 		0451723C2E5C452000F65A51 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451723B2E5C452000F65A51 /* ViewController.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0434DFD22E5E0D0E004BF364 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		045172342E5C452000F65A51 /* O_N_HW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = O_N_HW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		045172372E5C452000F65A51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		045172392E5C452000F65A51 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				0451726B2E5C7FDC00F65A51 /* O_N_HW-Bridging-Header.h */,
 				045172372E5C452000F65A51 /* AppDelegate.swift */,
 				045172392E5C452000F65A51 /* SceneDelegate.swift */,
+				0434DFD22E5E0D0E004BF364 /* ConfigViewController.swift */,
 				0451723B2E5C452000F65A51 /* ViewController.swift */,
 				045172532E5C63CD00F65A51 /* ViewModel.swift */,
 				045172702E5D51A400F65A51 /* MainDataTableViewCell.swift */,
@@ -254,6 +257,7 @@
 				045172382E5C452000F65A51 /* AppDelegate.swift in Sources */,
 				045172672E5C7EB200F65A51 /* SQLiteDB.swift in Sources */,
 				045172602E5C7EB200F65A51 /* SQLiteBase.swift in Sources */,
+				0434DFD32E5E0D0E004BF364 /* ConfigViewController.swift in Sources */,
 				0451723A2E5C452000F65A51 /* SceneDelegate.swift in Sources */,
 				045172622E5C7EB200F65A51 /* DBManager.swift in Sources */,
 				045172732E5D885000F65A51 /* OddsInfo.swift in Sources */,

@@ -14,7 +14,12 @@ class WebSocketMock {
     private let result = PassthroughSubject<Odds, Never>()
     
     func socketPush() {
-        let number = Int.random(in: 1...10)
+        let mockSocketMin = OddsInfo.shared.mockSocketMin
+        let mockSocketMax = OddsInfo.shared.mockSocketMax
+        let minV = max(min(mockSocketMin, mockSocketMax), 4)
+        let maxV = max(max(mockSocketMin, mockSocketMax), 10)
+        
+        let number = Int.random(in: minV...maxV)
         
         for _ in 0...number {
             let odds = generateRandomOdds()

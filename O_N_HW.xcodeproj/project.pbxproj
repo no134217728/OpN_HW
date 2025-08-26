@@ -18,6 +18,15 @@
 		045172512E5C49C400F65A51 /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 0451724F2E5C49C300F65A51 /* matches.json */; };
 		045172522E5C49C400F65A51 /* odds.json in Resources */ = {isa = PBXBuildFile; fileRef = 045172502E5C49C400F65A51 /* odds.json */; };
 		045172542E5C63CD00F65A51 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045172532E5C63CD00F65A51 /* ViewModel.swift */; };
+		045172602E5C7EB200F65A51 /* SQLiteBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045172562E5C7EB200F65A51 /* SQLiteBase.swift */; };
+		045172612E5C7EB200F65A51 /* DBTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045172582E5C7EB200F65A51 /* DBTable.swift */; };
+		045172622E5C7EB200F65A51 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045172592E5C7EB200F65A51 /* DBManager.swift */; };
+		045172632E5C7EB200F65A51 /* SQLTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451725A2E5C7EB200F65A51 /* SQLTable.swift */; };
+		045172642E5C7EB200F65A51 /* CKError-Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451725B2E5C7EB200F65A51 /* CKError-Extras.swift */; };
+		045172662E5C7EB200F65A51 /* CloudDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451725D2E5C7EB200F65A51 /* CloudDB.swift */; };
+		045172672E5C7EB200F65A51 /* SQLiteDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451725E2E5C7EB200F65A51 /* SQLiteDB.swift */; };
+		0451726A2E5C7F9100F65A51 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 045172692E5C7F6C00F65A51 /* libsqlite3.tbd */; };
+		045172742E5D8BF700F65A51 /* data.db in Resources */ = {isa = PBXBuildFile; fileRef = 0451726F2E5C834A00F65A51 /* data.db */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +43,16 @@
 		0451724F2E5C49C300F65A51 /* matches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = matches.json; sourceTree = "<group>"; };
 		045172502E5C49C400F65A51 /* odds.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = odds.json; sourceTree = "<group>"; };
 		045172532E5C63CD00F65A51 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		045172562E5C7EB200F65A51 /* SQLiteBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteBase.swift; sourceTree = "<group>"; };
+		045172582E5C7EB200F65A51 /* DBTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBTable.swift; sourceTree = "<group>"; };
+		045172592E5C7EB200F65A51 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		0451725A2E5C7EB200F65A51 /* SQLTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLTable.swift; sourceTree = "<group>"; };
+		0451725B2E5C7EB200F65A51 /* CKError-Extras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CKError-Extras.swift"; sourceTree = "<group>"; };
+		0451725D2E5C7EB200F65A51 /* CloudDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudDB.swift; sourceTree = "<group>"; };
+		0451725E2E5C7EB200F65A51 /* SQLiteDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDB.swift; sourceTree = "<group>"; };
+		045172692E5C7F6C00F65A51 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		0451726B2E5C7FDC00F65A51 /* O_N_HW-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "O_N_HW-Bridging-Header.h"; sourceTree = "<group>"; };
+		0451726F2E5C834A00F65A51 /* data.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = data.db; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0451726A2E5C7F9100F65A51 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +72,7 @@
 			children = (
 				045172362E5C452000F65A51 /* O_N_HW */,
 				045172352E5C452000F65A51 /* Products */,
+				045172682E5C7F6B00F65A51 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,6 +87,8 @@
 		045172362E5C452000F65A51 /* O_N_HW */ = {
 			isa = PBXGroup;
 			children = (
+				045172552E5C7EB200F65A51 /* SQLiteDB */,
+				0451726B2E5C7FDC00F65A51 /* O_N_HW-Bridging-Header.h */,
 				045172372E5C452000F65A51 /* AppDelegate.swift */,
 				045172392E5C452000F65A51 /* SceneDelegate.swift */,
 				0451723B2E5C452000F65A51 /* ViewController.swift */,
@@ -80,6 +103,37 @@
 				045172452E5C452200F65A51 /* Info.plist */,
 			);
 			path = O_N_HW;
+			sourceTree = "<group>";
+		};
+		045172552E5C7EB200F65A51 /* SQLiteDB */ = {
+			isa = PBXGroup;
+			children = (
+				045172572E5C7EB200F65A51 /* CloudKit */,
+				045172562E5C7EB200F65A51 /* SQLiteBase.swift */,
+				0451725A2E5C7EB200F65A51 /* SQLTable.swift */,
+				0451725B2E5C7EB200F65A51 /* CKError-Extras.swift */,
+				0451725D2E5C7EB200F65A51 /* CloudDB.swift */,
+				0451725E2E5C7EB200F65A51 /* SQLiteDB.swift */,
+				0451726F2E5C834A00F65A51 /* data.db */,
+			);
+			path = SQLiteDB;
+			sourceTree = "<group>";
+		};
+		045172572E5C7EB200F65A51 /* CloudKit */ = {
+			isa = PBXGroup;
+			children = (
+				045172582E5C7EB200F65A51 /* DBTable.swift */,
+				045172592E5C7EB200F65A51 /* DBManager.swift */,
+			);
+			path = CloudKit;
+			sourceTree = "<group>";
+		};
+		045172682E5C7F6B00F65A51 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				045172692E5C7F6C00F65A51 /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -114,6 +168,7 @@
 				TargetAttributes = {
 					045172332E5C452000F65A51 = {
 						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
 					};
 				};
 			};
@@ -143,6 +198,7 @@
 				045172442E5C452200F65A51 /* LaunchScreen.storyboard in Resources */,
 				045172512E5C49C400F65A51 /* matches.json in Resources */,
 				045172412E5C452200F65A51 /* Assets.xcassets in Resources */,
+				045172742E5D8BF700F65A51 /* data.db in Resources */,
 				045172522E5C49C400F65A51 /* odds.json in Resources */,
 				0451723F2E5C452000F65A51 /* Main.storyboard in Resources */,
 			);
@@ -157,10 +213,17 @@
 			files = (
 				0451723C2E5C452000F65A51 /* ViewController.swift in Sources */,
 				045172382E5C452000F65A51 /* AppDelegate.swift in Sources */,
+				045172672E5C7EB200F65A51 /* SQLiteDB.swift in Sources */,
+				045172602E5C7EB200F65A51 /* SQLiteBase.swift in Sources */,
 				0451723A2E5C452000F65A51 /* SceneDelegate.swift in Sources */,
+				045172622E5C7EB200F65A51 /* DBManager.swift in Sources */,
+				045172662E5C7EB200F65A51 /* CloudDB.swift in Sources */,
+				045172642E5C7EB200F65A51 /* CKError-Extras.swift in Sources */,
 				0451724C2E5C491C00F65A51 /* WebSocketMock.swift in Sources */,
 				045172542E5C63CD00F65A51 /* ViewModel.swift in Sources */,
+				045172612E5C7EB200F65A51 /* DBTable.swift in Sources */,
 				0451724E2E5C492C00F65A51 /* Models.swift in Sources */,
+				045172632E5C7EB200F65A51 /* SQLTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +373,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
@@ -328,6 +392,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.opn.hw.O-N-HW";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "O_N_HW/O_N_HW-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -338,6 +404,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
@@ -356,6 +423,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.opn.hw.O-N-HW";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "O_N_HW/O_N_HW-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -16,6 +16,7 @@ protocol ViewModelType {
 protocol ViewModelInput {
     func getMatches()
     func getDefaultOdds()
+    func preLoadIfExist()
 }
 
 protocol ViewModelOutput {
@@ -58,5 +59,10 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
                 print("file error: odds, error: \(error)")
             }
         }
+    }
+    
+    func preLoadIfExist() {
+        
+        
     }
 }

@@ -27,6 +27,7 @@
 		045172672E5C7EB200F65A51 /* SQLiteDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451725E2E5C7EB200F65A51 /* SQLiteDB.swift */; };
 		0451726A2E5C7F9100F65A51 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 045172692E5C7F6C00F65A51 /* libsqlite3.tbd */; };
 		045172742E5D8BF700F65A51 /* data.db in Resources */ = {isa = PBXBuildFile; fileRef = 0451726F2E5C834A00F65A51 /* data.db */; };
+		0451727D2E5DBA3A00F65A51 /* FPSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451727C2E5DBA3A00F65A51 /* FPSLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		045172692E5C7F6C00F65A51 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		0451726B2E5C7FDC00F65A51 /* O_N_HW-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "O_N_HW-Bridging-Header.h"; sourceTree = "<group>"; };
 		0451726F2E5C834A00F65A51 /* data.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = data.db; sourceTree = "<group>"; };
+		0451727C2E5DBA3A00F65A51 /* FPSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPSLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				0451723B2E5C452000F65A51 /* ViewController.swift */,
 				045172532E5C63CD00F65A51 /* ViewModel.swift */,
 				0451724B2E5C491C00F65A51 /* WebSocketMock.swift */,
+				0451727C2E5DBA3A00F65A51 /* FPSLabel.swift */,
 				0451724D2E5C492C00F65A51 /* Models.swift */,
 				0451724F2E5C49C300F65A51 /* matches.json */,
 				045172502E5C49C400F65A51 /* odds.json */,
@@ -212,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0451723C2E5C452000F65A51 /* ViewController.swift in Sources */,
+				0451727D2E5DBA3A00F65A51 /* FPSLabel.swift in Sources */,
 				045172382E5C452000F65A51 /* AppDelegate.swift in Sources */,
 				045172672E5C7EB200F65A51 /* SQLiteDB.swift in Sources */,
 				045172602E5C7EB200F65A51 /* SQLiteBase.swift in Sources */,

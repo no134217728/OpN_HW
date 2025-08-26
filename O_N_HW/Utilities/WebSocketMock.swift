@@ -16,8 +16,9 @@ class WebSocketMock {
     func socketPush() {
         let number = Int.random(in: 1...10)
         
-        for i in 0...number {
+        for _ in 0...number {
             let odds = generateRandomOdds()
+            OddsInfo.shared.updateOdds(odds: odds)
             result.send(odds)
         }
     }

@@ -26,6 +26,8 @@
 		045172662E5C7EB200F65A51 /* CloudDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451725D2E5C7EB200F65A51 /* CloudDB.swift */; };
 		045172672E5C7EB200F65A51 /* SQLiteDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451725E2E5C7EB200F65A51 /* SQLiteDB.swift */; };
 		0451726A2E5C7F9100F65A51 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 045172692E5C7F6C00F65A51 /* libsqlite3.tbd */; };
+		045172712E5D51A400F65A51 /* MainDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045172702E5D51A400F65A51 /* MainDataTableViewCell.swift */; };
+		045172732E5D885000F65A51 /* OddsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045172722E5D885000F65A51 /* OddsInfo.swift */; };
 		045172742E5D8BF700F65A51 /* data.db in Resources */ = {isa = PBXBuildFile; fileRef = 0451726F2E5C834A00F65A51 /* data.db */; };
 		0451727D2E5DBA3A00F65A51 /* FPSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451727C2E5DBA3A00F65A51 /* FPSLabel.swift */; };
 /* End PBXBuildFile section */
@@ -54,6 +56,8 @@
 		045172692E5C7F6C00F65A51 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		0451726B2E5C7FDC00F65A51 /* O_N_HW-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "O_N_HW-Bridging-Header.h"; sourceTree = "<group>"; };
 		0451726F2E5C834A00F65A51 /* data.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = data.db; sourceTree = "<group>"; };
+		045172702E5D51A400F65A51 /* MainDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataTableViewCell.swift; sourceTree = "<group>"; };
+		045172722E5D885000F65A51 /* OddsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsInfo.swift; sourceTree = "<group>"; };
 		0451727C2E5DBA3A00F65A51 /* FPSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPSLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,16 +94,15 @@
 			isa = PBXGroup;
 			children = (
 				045172552E5C7EB200F65A51 /* SQLiteDB */,
+				045172862E5E00FB00F65A51 /* Utilities */,
+				045172872E5E010A00F65A51 /* Data */,
+				045172852E5E00EF00F65A51 /* JSON */,
 				0451726B2E5C7FDC00F65A51 /* O_N_HW-Bridging-Header.h */,
 				045172372E5C452000F65A51 /* AppDelegate.swift */,
 				045172392E5C452000F65A51 /* SceneDelegate.swift */,
 				0451723B2E5C452000F65A51 /* ViewController.swift */,
 				045172532E5C63CD00F65A51 /* ViewModel.swift */,
-				0451724B2E5C491C00F65A51 /* WebSocketMock.swift */,
-				0451727C2E5DBA3A00F65A51 /* FPSLabel.swift */,
-				0451724D2E5C492C00F65A51 /* Models.swift */,
-				0451724F2E5C49C300F65A51 /* matches.json */,
-				045172502E5C49C400F65A51 /* odds.json */,
+				045172702E5D51A400F65A51 /* MainDataTableViewCell.swift */,
 				0451723D2E5C452000F65A51 /* Main.storyboard */,
 				045172402E5C452200F65A51 /* Assets.xcassets */,
 				045172422E5C452200F65A51 /* LaunchScreen.storyboard */,
@@ -139,6 +142,33 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		045172852E5E00EF00F65A51 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				0451724F2E5C49C300F65A51 /* matches.json */,
+				045172502E5C49C400F65A51 /* odds.json */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		045172862E5E00FB00F65A51 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				0451724B2E5C491C00F65A51 /* WebSocketMock.swift */,
+				0451727C2E5DBA3A00F65A51 /* FPSLabel.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		045172872E5E010A00F65A51 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				045172722E5D885000F65A51 /* OddsInfo.swift */,
+				0451724D2E5C492C00F65A51 /* Models.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -155,6 +185,8 @@
 			dependencies = (
 			);
 			name = O_N_HW;
+			packageProductDependencies = (
+			);
 			productName = O_N_HW;
 			productReference = 045172342E5C452000F65A51 /* O_N_HW.app */;
 			productType = "com.apple.product-type.application";
@@ -184,6 +216,8 @@
 				Base,
 			);
 			mainGroup = 0451722B2E5C452000F65A51;
+			packageReferences = (
+			);
 			productRefGroup = 045172352E5C452000F65A51 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -214,6 +248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				045172712E5D51A400F65A51 /* MainDataTableViewCell.swift in Sources */,
 				0451723C2E5C452000F65A51 /* ViewController.swift in Sources */,
 				0451727D2E5DBA3A00F65A51 /* FPSLabel.swift in Sources */,
 				045172382E5C452000F65A51 /* AppDelegate.swift in Sources */,
@@ -221,6 +256,7 @@
 				045172602E5C7EB200F65A51 /* SQLiteBase.swift in Sources */,
 				0451723A2E5C452000F65A51 /* SceneDelegate.swift in Sources */,
 				045172622E5C7EB200F65A51 /* DBManager.swift in Sources */,
+				045172732E5D885000F65A51 /* OddsInfo.swift in Sources */,
 				045172662E5C7EB200F65A51 /* CloudDB.swift in Sources */,
 				045172642E5C7EB200F65A51 /* CKError-Extras.swift in Sources */,
 				0451724C2E5C491C00F65A51 /* WebSocketMock.swift in Sources */,

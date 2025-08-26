@@ -11,7 +11,7 @@ struct Match: Decodable {
     let matchID: Int
     let teamA: String
     let teamB: String
-    let startTime: String
+    let startTime: Date
 }
 
 struct Odds: Decodable {
@@ -20,11 +20,20 @@ struct Odds: Decodable {
     let teamBOdds: Decimal
 }
 
-struct MainData: Decodable {
+struct MainData {
     let matchID: Int
     let teamA: String
     let teamB: String
-    let startTime: String
+    let startTime: Date
     var teamAOdds: Decimal
     var teamBOdds: Decimal
+    
+    init(match: Match, odds: Odds) {
+        matchID = match.matchID
+        teamA = match.teamA
+        teamB = match.teamB
+        startTime = match.startTime
+        teamAOdds = odds.teamAOdds
+        teamBOdds = odds.teamBOdds
+    }
 }

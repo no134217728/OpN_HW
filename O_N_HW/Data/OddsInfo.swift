@@ -15,31 +15,40 @@ class OddsInfo {
     
     private let oddsQueue = DispatchQueue(label: "odds", qos: .background, attributes: .concurrent)
     
-    private var _oddsLists: [MainData] = []
-    private var _matchIDandCellPosition: [Int: Int] = [:]
+    private var _mainData: [MainData] = []
+    private var _cellIndexAndMainData: [Int: MainData] = [:]
+    private var _matchIDAndCellIndex: [Int: Int] = [:]
     
-    var oddsLists: [MainData] {
+    var mainData: [MainData] {
         get {
-            return oddsQueue.sync { _oddsLists }
-        }
-        set {
-            oddsQueue.async(flags: .barrier) { self._oddsLists = newValue }
+            return oddsQueue.sync { _mainData }
+        } set {
+            oddsQueue.async(flags: .barrier) { self._mainData = newValue }
         }
     }
     
-    var matchIDandCellPosition: [Int: Int] {
+    var cellIndexAndMainData: [Int: MainData] {
         get {
-            return oddsQueue.sync { _matchIDandCellPosition }
+            return oddsQueue.sync { _cellIndexAndMainData }
         }
         set {
-            oddsQueue.async(flags: .barrier) { self._matchIDandCellPosition = newValue }
+            oddsQueue.async(flags: .barrier) { self._cellIndexAndMainData = newValue }
+        }
+    }
+    
+    var matchIDAndCellIndex: [Int: Int] {
+        get {
+            return oddsQueue.sync { _matchIDAndCellIndex }
+        }
+        set {
+            oddsQueue.async(flags: .barrier) { self._matchIDAndCellIndex = newValue }
         }
     }
     
     func updateOdds(odds: Odds) {
-        guard let index = oddsLists.firstIndex(where: { $0.matchID == odds.matchID }) else { return }
+        guard let index = mainData.firstIndex(where: { $0.matchID == odds.matchID }) else { return }
         
-        oddsLists[index].teamAOdds = odds.teamAOdds
-        oddsLists[index].teamBOdds = odds.teamBOdds
+        mainData[index].teamAOdds = odds.teamAOdds
+        mainData[index].teamBOdds = odds.teamBOdds
     }
 }

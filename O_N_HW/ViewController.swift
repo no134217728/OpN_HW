@@ -57,7 +57,7 @@ class ViewController: UIViewController {
     
     func updateCell(odds: Odds) {
         queue.async {
-            guard let cellIndex = OddsInfo.shared.matchIDandCellPosition[odds.matchID] else { return }
+            guard let cellIndex = OddsInfo.shared.matchIDAndCellIndex[odds.matchID] else { return }
             let cellIndexPath = IndexPath(row: cellIndex, section: 0)
             
             DispatchQueue.main.async {
@@ -71,15 +71,15 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { OddsInfo.shared.oddsLists.count }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { OddsInfo.shared.mainData.count }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath) as! MainDataTableViewCell
         
-        let data = OddsInfo.shared.oddsLists[indexPath.row]
+        let data = OddsInfo.shared.mainData[indexPath.row]
         cell.configureCell(data: data)
         
-        OddsInfo.shared.matchIDandCellPosition[data.matchID] = indexPath.row
+        OddsInfo.shared.matchIDAndCellIndex[data.matchID] = indexPath.row
         
         return cell
     }

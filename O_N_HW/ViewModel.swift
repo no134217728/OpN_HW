@@ -51,7 +51,11 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
                     return MainData(match: match, odds: odds)
                 }
             }.sink { mainData in
-                OddsInfo.shared.oddsLists = mainData
+                OddsInfo.shared.mainData = mainData
+                for data in mainData.enumerated() {
+                    OddsInfo.shared.cellIndexAndMainData[data.0] = data.1
+                }
+                
                 self.mainDataSubject.send(())
             }.store(in: &cancellables)
     }

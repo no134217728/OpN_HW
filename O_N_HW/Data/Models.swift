@@ -20,13 +20,25 @@ struct Odds: Decodable {
     let teamBOdds: Decimal
 }
 
-struct MainData {
+class MainDataObserve {
     let matchID: Int
     let teamA: String
     let teamB: String
     let startTime: Date
-    var teamAOdds: Decimal
-    var teamBOdds: Decimal
+    
+    var teamAOdds: Decimal {
+        didSet {
+            notifyObservers()
+        }
+    }
+    
+    var teamBOdds: Decimal {
+        didSet {
+            notifyObservers()
+        }
+    }
+    
+    private var observers: [(Decimal, Decimal) -> Void] = []
     
     init(match: Match, odds: Odds) {
         matchID = match.matchID
@@ -35,5 +47,19 @@ struct MainData {
         startTime = match.startTime
         teamAOdds = odds.teamAOdds
         teamBOdds = odds.teamBOdds
+    }
+    
+    func addObserver(_ observer: @escaping (Decimal, Decimal) -> Void) {
+        observers.append(observer)
+    }
+    
+    func clearObservers() {
+        observers = []
+    }
+    
+    private func notifyObservers() {
+        for observer in observers {
+            observer(teamAOdds, teamBOdds)
+        }
     }
 }

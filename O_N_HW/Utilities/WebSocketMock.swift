@@ -9,10 +9,6 @@ import UIKit
 import Combine
 
 class WebSocketMock {
-    var resultPublisher: AnyPublisher<Odds, Never> { result.eraseToAnyPublisher() }
-    
-    private let result = PassthroughSubject<Odds, Never>()
-    
     func socketPush() {
         let mockSocketMin = OddsInfo.shared.mockSocketMin
         let mockSocketMax = OddsInfo.shared.mockSocketMax
@@ -24,7 +20,6 @@ class WebSocketMock {
         for _ in 0...number {
             let odds = generateRandomOdds()
             OddsInfo.shared.updateOdds(odds: odds)
-            result.send(odds)
         }
     }
     

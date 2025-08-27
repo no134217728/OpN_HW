@@ -15,12 +15,30 @@ class MainDataTableViewCell: UITableViewCell {
     @IBOutlet weak var teamBNameLabel: UILabel!
     @IBOutlet weak var oddsBLabel: UILabel!
     
-    func configureCell(data: MainData) {
-        matchIDLabel.text = "\(data.matchID)"
-        startTimeLabel.text = "\(data.startTime)"
-        teamANameLabel.text = data.teamA
-        oddsALabel.text = "\(data.teamAOdds)"
-        teamBNameLabel.text = data.teamB
-        oddsBLabel.text = "\(data.teamBOdds)"
+    private var model: MainDataObserve?
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        model?.clearObservers()
+        model = nil
+    }
+    
+    func configure(with model: MainDataObserve) {
+        self.model = model
+        
+        matchIDLabel.text = "\(model.matchID)"
+        startTimeLabel.text = "\(model.startTime)"
+        teamANameLabel.text = model.teamA
+        oddsALabel.text = "\(model.teamAOdds)"
+        teamBNameLabel.text = model.teamB
+        oddsBLabel.text = "\(model.teamBOdds)"
+        
+        self.model?.addObserver { [weak self] teamAOdds, teamBOdds in
+            DispatchQueue.main.async {
+                self?.oddsALabel.text = "\(teamAOdds)"
+                self?.oddsBLabel.text = "\(teamBOdds)"
+            }
+        }
     }
 }

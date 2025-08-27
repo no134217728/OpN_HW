@@ -16,7 +16,6 @@ class ViewController: UIViewController {
     
     private var cancellables = Set<AnyCancellable>()
     
-    let queue = DispatchQueue.init(label: "UpdateCell", qos: .background, attributes: .concurrent)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,24 +48,6 @@ class ViewController: UIViewController {
         viewModel.mainData.sink { [unowned self] in
             self.mainDataTableView.reloadData()
         }.store(in: &cancellables)
-        
-        mockSocket.resultPublisher.sink { [weak self] odds in
-            self?.updateCell(odds: odds)
-        }.store(in: &cancellables)
-    }
-    
-    func updateCell(odds: Odds) {
-        queue.async {
-            guard let cellIndex = OddsInfo.shared.matchIDAndCellIndex[odds.matchID] else { return }
-            let cellIndexPath = IndexPath(row: cellIndex, section: 0)
-            
-            DispatchQueue.main.async {
-                guard let cell = self.mainDataTableView.cellForRow(at: cellIndexPath) as? MainDataTableViewCell else { return }
-                
-                cell.oddsALabel.text = "\(odds.teamAOdds)"
-                cell.oddsBLabel.text = "\(odds.teamBOdds)"
-            }
-        }
     }
 }
 
@@ -77,9 +58,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath) as! MainDataTableViewCell
         
         let data = OddsInfo.shared.mainData[indexPath.row]
-        cell.configureCell(data: data)
-        
-        OddsInfo.shared.matchIDAndCellIndex[data.matchID] = indexPath.row
+        cell.configure(with: data)
         
         return cell
     }

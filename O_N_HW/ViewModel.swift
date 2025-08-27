@@ -42,19 +42,16 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
     func waitForAllData() {
         matchesSubject
             .combineLatest(oddsSubject)
-            .map { matches, odds -> [MainData] in
+            .map { matches, odds -> [MainDataObserve] in
                 return matches.compactMap { match in
                     guard let odds = odds.first(where: { $0.matchID == match.matchID }) else {
                         return nil
                     }
                     
-                    return MainData(match: match, odds: odds)
+                    return MainDataObserve(match: match, odds: odds)
                 }
             }.sink { mainData in
                 OddsInfo.shared.mainData = mainData
-                for data in mainData.enumerated() {
-                    OddsInfo.shared.cellIndexAndMainData[data.0] = data.1
-                }
                 
                 self.mainDataSubject.send(())
             }.store(in: &cancellables)

@@ -11,11 +11,11 @@ import Combine
 class ViewController: UIViewController {
     @IBOutlet weak var mainDataTableView: UITableView!
     
+    var viewModel: ViewModel!
+    
     private let mockSocket = WebSocketMock()
-    private let viewModel = ViewModel()
     
     private var cancellables = Set<AnyCancellable>()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +27,11 @@ class ViewController: UIViewController {
         
         bindViewModel()
         viewModel.input.waitForAllData()
-        viewModel.input.getMatches()
-        viewModel.input.getDefaultOdds()
+        
+        Task {
+            async let _ = viewModel.input.getMatches()
+            async let _ = viewModel.input.getDefaultOdds()
+        }
         
         let publisher = Timer
             .publish(every: 1.0, on: .main, in: .common)
@@ -45,9 +48,11 @@ class ViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.mainData.sink { [unowned self] in
-            self.mainDataTableView.reloadData()
-        }.store(in: &cancellables)
+        viewModel.mainData
+            .receive(on: RunLoop.main)
+            .sink { [unowned self] in
+                self.mainDataTableView.reloadData()
+            }.store(in: &cancellables)
     }
 }
 

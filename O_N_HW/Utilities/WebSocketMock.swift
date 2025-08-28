@@ -10,8 +10,8 @@ import Combine
 
 class WebSocketMock {
     func socketPush() {
-        let mockSocketMin = OddsInfo.shared.mockSocketMin
-        let mockSocketMax = OddsInfo.shared.mockSocketMax
+        let mockSocketMin = Misc.shared.mockSocketMin
+        let mockSocketMax = Misc.shared.mockSocketMax
         let minV = max(min(mockSocketMin, mockSocketMax), 4)
         let maxV = max(max(mockSocketMin, mockSocketMax), 10)
         

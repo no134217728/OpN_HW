@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040331942E605EBA002F3A60 /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040331932E605EBA002F3A60 /* Misc.swift */; };
+		040331962E606CCE002F3A60 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040331952E606CCE002F3A60 /* APIService.swift */; };
+		040331982E6075B8002F3A60 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040331972E6075B8002F3A60 /* Repository.swift */; };
+		040331A82E609380002F3A60 /* OddsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040331A72E609380002F3A60 /* OddsCoordinator.swift */; };
 		0434DFD32E5E0D0E004BF364 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0434DFD22E5E0D0E004BF364 /* ConfigViewController.swift */; };
 		045172382E5C452000F65A51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045172372E5C452000F65A51 /* AppDelegate.swift */; };
 		0451723A2E5C452000F65A51 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045172392E5C452000F65A51 /* SceneDelegate.swift */; };
@@ -34,6 +38,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040331932E605EBA002F3A60 /* Misc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
+		040331952E606CCE002F3A60 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		040331972E6075B8002F3A60 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		040331A72E609380002F3A60 /* OddsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OddsCoordinator.swift; sourceTree = "<group>"; };
 		0434DFD22E5E0D0E004BF364 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		045172342E5C452000F65A51 /* O_N_HW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = O_N_HW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		045172372E5C452000F65A51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,9 +110,11 @@
 				0451726B2E5C7FDC00F65A51 /* O_N_HW-Bridging-Header.h */,
 				045172372E5C452000F65A51 /* AppDelegate.swift */,
 				045172392E5C452000F65A51 /* SceneDelegate.swift */,
+				040331A72E609380002F3A60 /* OddsCoordinator.swift */,
 				0434DFD22E5E0D0E004BF364 /* ConfigViewController.swift */,
 				0451723B2E5C452000F65A51 /* ViewController.swift */,
 				045172532E5C63CD00F65A51 /* ViewModel.swift */,
+				040331972E6075B8002F3A60 /* Repository.swift */,
 				045172702E5D51A400F65A51 /* MainDataTableViewCell.swift */,
 				0451723D2E5C452000F65A51 /* Main.storyboard */,
 				045172402E5C452200F65A51 /* Assets.xcassets */,
@@ -158,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				0451724B2E5C491C00F65A51 /* WebSocketMock.swift */,
+				040331952E606CCE002F3A60 /* APIService.swift */,
 				0451727C2E5DBA3A00F65A51 /* FPSLabel.swift */,
 			);
 			path = Utilities;
@@ -166,6 +177,7 @@
 		045172872E5E010A00F65A51 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				040331932E605EBA002F3A60 /* Misc.swift */,
 				045172722E5D885000F65A51 /* OddsInfo.swift */,
 				0451724D2E5C492C00F65A51 /* Models.swift */,
 			);
@@ -252,10 +264,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				045172712E5D51A400F65A51 /* MainDataTableViewCell.swift in Sources */,
+				040331A82E609380002F3A60 /* OddsCoordinator.swift in Sources */,
+				040331962E606CCE002F3A60 /* APIService.swift in Sources */,
 				0451723C2E5C452000F65A51 /* ViewController.swift in Sources */,
 				0451727D2E5DBA3A00F65A51 /* FPSLabel.swift in Sources */,
+				040331942E605EBA002F3A60 /* Misc.swift in Sources */,
 				045172382E5C452000F65A51 /* AppDelegate.swift in Sources */,
 				045172672E5C7EB200F65A51 /* SQLiteDB.swift in Sources */,
+				040331982E6075B8002F3A60 /* Repository.swift in Sources */,
 				045172602E5C7EB200F65A51 /* SQLiteBase.swift in Sources */,
 				0434DFD32E5E0D0E004BF364 /* ConfigViewController.swift in Sources */,
 				0451723A2E5C452000F65A51 /* SceneDelegate.swift in Sources */,

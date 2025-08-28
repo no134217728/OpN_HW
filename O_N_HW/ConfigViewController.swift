@@ -5,6 +5,7 @@
 //  Created by 黃紋吸蜜 on 2025/8/26.
 //
 
+import Foundation
 import UIKit
 
 class ConfigViewController: UIViewController {
@@ -15,11 +16,16 @@ class ConfigViewController: UIViewController {
         let minV = Int(minText.text ?? "4") ?? 4
         let maxV = Int(maxText.text ?? "10") ?? 10
         
-        OddsInfo.shared.mockSocketMin = minV
-        OddsInfo.shared.mockSocketMax = maxV
+        Misc.shared.mockSocketMin = minV
+        Misc.shared.mockSocketMax = maxV
         
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MainVC")
+        guard let navC = self.navigationController else {
+            print("Missing navigationController.")
+            return
+        }
         
-        self.navigationController?.pushViewController(vc, animated: true)
+        let coordinator = OddsCoordinator(service: LocalAPIService(),
+                                          navigationController: navC)
+        coordinator.startTheOddsPage()
     }
 }

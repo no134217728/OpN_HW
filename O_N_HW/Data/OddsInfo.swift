@@ -10,9 +10,6 @@ import Foundation
 class OddsInfo {
     static let shared = OddsInfo()
     
-    var mockSocketMin: Int = 4
-    var mockSocketMax: Int = 10
-    
     private let oddsQueue = DispatchQueue(label: "odds", qos: .background, attributes: .concurrent)
     
     private var _mainData: [MainDataObserve] = []

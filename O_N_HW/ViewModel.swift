@@ -15,8 +15,8 @@ protocol ViewModelType {
 
 protocol ViewModelInput {
     func waitForAllData()
-    func getMatches()
-    func getDefaultOdds()
+    func getMatches() async
+    func getDefaultOdds() async
 }
 
 protocol ViewModelOutput {
@@ -33,11 +33,17 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
     var odds: AnyPublisher<[Odds], Never> { oddsSubject.eraseToAnyPublisher() }
     var mainData: AnyPublisher<Void, Never> { mainDataSubject.eraseToAnyPublisher() }
     
+    private let repository: Repository
+    
     private let matchesSubject = PassthroughSubject<[Match], Never>()
     private let oddsSubject = PassthroughSubject<[Odds], Never>()
     private let mainDataSubject = PassthroughSubject<Void, Never>()
     
     private var cancellables = Set<AnyCancellable>()
+    
+    init(repository: Repository) {
+        self.repository = repository
+    }
     
     func waitForAllData() {
         matchesSubject
@@ -57,31 +63,22 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
             }.store(in: &cancellables)
     }
     
-    func getMatches() {
-        if let path = Bundle.main.path(forResource: "matches", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path))
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .iso8601
-                let matches = try decoder.decode([Match].self, from: data)
-                let sortedMatches = matches.sorted { $0.startTime < $1.startTime }
-                
-                matchesSubject.send(sortedMatches)
-            } catch {
-                print("file error: matches, error: \(error)")
-            }
+    func getMatches() async {
+        guard let matches = await repository.getMatches() else {
+            print("Matches is empty.")
+            return
         }
+        
+        let sortedMatches = matches.sorted { $0.startTime < $1.startTime }
+        matchesSubject.send(sortedMatches)
     }
     
-    func getDefaultOdds() {
-        if let path = Bundle.main.path(forResource: "odds", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path))
-                let paramsModel = try JSONDecoder().decode([Odds].self, from: data)
-                oddsSubject.send(paramsModel)
-            } catch {
-                print("file error: odds, error: \(error)")
-            }
+    func getDefaultOdds() async {
+        guard let odds = await repository.getDefaultOdds() else {
+            print("Odds is empty.")
+            return
         }
+        
+        oddsSubject.send(odds)
     }
 }

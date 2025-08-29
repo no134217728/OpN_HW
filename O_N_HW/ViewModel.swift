@@ -17,6 +17,7 @@ protocol ViewModelInput {
     func waitForAllData()
     func getMatches() async
     func getDefaultOdds() async
+    func initMocketSocket()
 }
 
 protocol ViewModelOutput {
@@ -80,5 +81,16 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
         }
         
         oddsSubject.send(odds)
+    }
+    
+    func initMocketSocket() {
+        let mockSocket = WebSocketMock()
+        
+        Timer.publish(every: 1.0, on: .main, in: .common)
+            .autoconnect()
+            .sink { date in
+                print("Timer: \(date)")
+                mockSocket.socketPush()
+            }.store(in: &cancellables)
     }
 }

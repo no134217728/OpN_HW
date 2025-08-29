@@ -13,8 +13,6 @@ class ViewController: UIViewController {
     
     var viewModel: ViewModel!
     
-    private let mockSocket = WebSocketMock()
-    
     private var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -33,18 +31,7 @@ class ViewController: UIViewController {
             async let _ = viewModel.input.getDefaultOdds()
         }
         
-        let publisher = Timer
-            .publish(every: 1.0, on: .main, in: .common)
-            .autoconnect()
-            .map { _ in
-                Date.now
-            }
-        
-        publisher
-            .sink { [unowned self] date in
-                print("Timer: \(date)")
-                self.mockSocket.socketPush()
-            }.store(in: &cancellables)
+        viewModel.input.initMocketSocket()
     }
     
     private func bindViewModel() {

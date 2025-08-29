@@ -12,6 +12,16 @@ class ConfigViewController: UIViewController {
     @IBOutlet weak var minText: UITextField!
     @IBOutlet weak var maxText: UITextField!
     
+    @IBAction func lowConfig() {
+        minText.text = "\(4)"
+        maxText.text = "\(10)"
+    }
+    
+    @IBAction func HighConfig() {
+        minText.text = "\(90)"
+        maxText.text = "\(100)"
+    }
+    
     @IBAction func go() {
         let minV = Int(minText.text ?? "4") ?? 4
         let maxV = Int(maxText.text ?? "10") ?? 10

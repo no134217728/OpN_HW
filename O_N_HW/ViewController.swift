@@ -11,7 +11,7 @@ import Combine
 class ViewController: UIViewController {
     @IBOutlet weak var mainDataTableView: UITableView!
     
-    var viewModel: ViewModel!
+    var viewModel: ViewModelType!
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.mainDataNotify
+        viewModel.output.mainDataNotify
             .receive(on: RunLoop.main)
             .sink { [unowned self] in
                 self.mainDataTableView.reloadData()

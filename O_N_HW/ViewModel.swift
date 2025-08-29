@@ -56,7 +56,7 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
                     
                     return MainDataObserve(match: match, odds: odds)
                 }
-            }.sink { mainData in
+            }.sink { [unowned self] mainData in
                 OddsInfo.shared.mainData = mainData
                 
                 self.mainDataSubject.send(())

@@ -23,7 +23,8 @@ protocol ViewModelInput {
 protocol ViewModelOutput {
     var matches: AnyPublisher<[Match], Never> { get }
     var odds: AnyPublisher<[Odds], Never> { get }
-    var mainData: AnyPublisher<Void, Never> { get }
+    var mainDataNotify: AnyPublisher<Void, Never> { get }
+    var mainDataRaw: [MainDataObserve] { get }
 }
 
 class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
@@ -32,9 +33,11 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
     
     var matches: AnyPublisher<[Match], Never> { matchesSubject.eraseToAnyPublisher() }
     var odds: AnyPublisher<[Odds], Never> { oddsSubject.eraseToAnyPublisher() }
-    var mainData: AnyPublisher<Void, Never> { mainDataSubject.eraseToAnyPublisher() }
+    var mainDataNotify: AnyPublisher<Void, Never> { mainDataSubject.eraseToAnyPublisher() }
+    private(set) var mainDataRaw: [MainDataObserve] = []
     
     private let repository: Repository
+    private let oddsInfo: OddsInfoActor = .init()
     
     private let matchesSubject = PassthroughSubject<[Match], Never>()
     private let oddsSubject = PassthroughSubject<[Odds], Never>()
@@ -58,8 +61,11 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
                     return MainDataObserve(match: match, odds: odds)
                 }
             }.sink { [unowned self] mainData in
-                OddsInfo.shared.mainData = mainData
+                Task {
+                    await self.oddsInfo.setMainData(data: mainData)
+                }
                 
+                self.mainDataRaw = mainData
                 self.mainDataSubject.send(())
             }.store(in: &cancellables)
     }
@@ -85,12 +91,24 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
     
     func initMocketSocket() {
         let mockSocket = WebSocketMock()
+        let mockSocketMin = Misc.shared.mockSocketMin
+        let mockSocketMax = Misc.shared.mockSocketMax
+        let minV = max(min(mockSocketMin, mockSocketMax), 4)
+        let maxV = max(max(mockSocketMin, mockSocketMax), 10)
         
         Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
-            .sink { date in
+            .sink { [unowned self] date in
                 print("Timer: \(date)")
-                mockSocket.socketPush()
+                let number = Int.random(in: minV...maxV)
+                
+                for _ in 0...number {
+                    let odds = mockSocket.generateRandomOdds()
+                    Task {
+                        await self.oddsInfo.updateOdds(odds: odds)
+                    }
+                }
+                
             }.store(in: &cancellables)
     }
 }

@@ -6,23 +6,8 @@
 //
 
 import UIKit
-import Combine
 
 class WebSocketMock {
-    func socketPush() {
-        let mockSocketMin = Misc.shared.mockSocketMin
-        let mockSocketMax = Misc.shared.mockSocketMax
-        let minV = max(min(mockSocketMin, mockSocketMax), 4)
-        let maxV = max(max(mockSocketMin, mockSocketMax), 10)
-        
-        let number = Int.random(in: minV...maxV)
-        
-        for _ in 0...number {
-            let odds = generateRandomOdds()
-            OddsInfo.shared.updateOdds(odds: odds)
-        }
-    }
-    
     func generateRandomOdds() -> Odds {
         let matchID = Int.random(in: 1001...1120)
         var oddsA = Decimal(Double.random(in: 1...3))

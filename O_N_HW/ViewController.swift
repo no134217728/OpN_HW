@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.mainData
+        viewModel.mainDataNotify
             .receive(on: RunLoop.main)
             .sink { [unowned self] in
                 self.mainDataTableView.reloadData()
@@ -44,12 +44,12 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { OddsInfo.shared.mainData.count }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { viewModel.output.mainDataRaw.count }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath) as! MainDataTableViewCell
         
-        let data = OddsInfo.shared.mainData[indexPath.row]
+        let data = viewModel.output.mainDataRaw[indexPath.row]
         cell.configure(with: data)
         
         return cell

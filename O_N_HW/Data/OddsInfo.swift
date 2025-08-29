@@ -7,6 +7,21 @@
 
 import Foundation
 
+actor OddsInfoActor {
+    var mainData: [MainDataObserve] = []
+
+    func setMainData(data: [MainDataObserve]) {
+        mainData = data
+    }
+    
+    func updateOdds(odds: Odds) {
+        guard let index = mainData.firstIndex(where: { $0.matchID == odds.matchID }) else { return }
+        
+        mainData[index].teamAOdds = odds.teamAOdds
+        mainData[index].teamBOdds = odds.teamBOdds
+    }
+}
+
 class OddsInfo {
     static let shared = OddsInfo()
     

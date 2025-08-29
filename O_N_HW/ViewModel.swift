@@ -24,7 +24,7 @@ protocol ViewModelOutput {
     var matches: AnyPublisher<[Match], Never> { get }
     var odds: AnyPublisher<[Odds], Never> { get }
     var mainDataNotify: AnyPublisher<Void, Never> { get }
-    var mainDataRaw: [MainDataObserve] { get }
+    var mainCellModels: [MainDataTableViewCellModel] { get }
 }
 
 class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
@@ -34,7 +34,7 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
     var matches: AnyPublisher<[Match], Never> { matchesSubject.eraseToAnyPublisher() }
     var odds: AnyPublisher<[Odds], Never> { oddsSubject.eraseToAnyPublisher() }
     var mainDataNotify: AnyPublisher<Void, Never> { mainDataSubject.eraseToAnyPublisher() }
-    private(set) var mainDataRaw: [MainDataObserve] = []
+    private(set) var mainCellModels: [MainDataTableViewCellModel] = []
     
     private let repository: Repository
     private let oddsInfo: OddsInfoActor = .init()
@@ -52,20 +52,20 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
     func waitForAllData() {
         matchesSubject
             .combineLatest(oddsSubject)
-            .map { matches, odds -> [MainDataObserve] in
+            .map { matches, odds -> [MainDataTableViewCellModel] in
                 return matches.compactMap { match in
                     guard let odds = odds.first(where: { $0.matchID == match.matchID }) else {
                         return nil
                     }
                     
-                    return MainDataObserve(match: match, odds: odds)
+                    return MainDataTableViewCellModel(match: match, odds: odds)
                 }
             }.sink { [unowned self] mainData in
                 Task {
                     await self.oddsInfo.setMainData(data: mainData)
                 }
                 
-                self.mainDataRaw = mainData
+                self.mainCellModels = mainData
                 self.mainDataSubject.send(())
             }.store(in: &cancellables)
     }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class MainDataTableViewCell: UITableViewCell {
     @IBOutlet weak var matchIDLabel: UILabel!
@@ -15,17 +16,16 @@ class MainDataTableViewCell: UITableViewCell {
     @IBOutlet weak var teamBNameLabel: UILabel!
     @IBOutlet weak var oddsBLabel: UILabel!
     
-    private var model: MainDataObserve?
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        model?.clearObservers()
-        model = nil
+    private var viewModel: MainDataTableViewCellModel? {
+        didSet {
+            bindViewModel()
+        }
     }
     
-    func configure(with model: MainDataObserve) {
-        self.model = model
+    private var cancellables = Set<AnyCancellable>()
+    
+    func configure(with model: MainDataTableViewCellModel) {
+        self.viewModel = model
         
         matchIDLabel.text = "\(model.matchID)"
         startTimeLabel.text = "\(model.startTime)"
@@ -33,12 +33,47 @@ class MainDataTableViewCell: UITableViewCell {
         oddsALabel.text = "\(model.teamAOdds)"
         teamBNameLabel.text = model.teamB
         oddsBLabel.text = "\(model.teamBOdds)"
+    }
+    
+    func bindViewModel() {
+        cancellables.removeAll()
         
-        self.model?.addObserver { [weak self] teamAOdds, teamBOdds in
-            DispatchQueue.main.async {
-                self?.oddsALabel.text = "\(teamAOdds)"
-                self?.oddsBLabel.text = "\(teamBOdds)"
-            }
-        }
+        guard let vm = viewModel else { return }
+        
+        vm.$teamAOdds
+            .map({ "\($0)" })
+            .receive(on: RunLoop.main)
+            .assign(to: \.text, on: oddsALabel)
+            .store(in: &cancellables)
+        
+        vm.$teamBOdds
+            .map({ "\($0)" })
+            .receive(on: RunLoop.main)
+            .assign(to: \.text, on: oddsBLabel)
+            .store(in: &cancellables)
+    }
+}
+
+class MainDataTableViewCellModel: ObservableObject {
+    let matchID: Int
+    let teamA: String
+    let teamB: String
+    let startTime: Date
+    
+    @Published private(set) var teamAOdds: Decimal
+    @Published private(set) var teamBOdds: Decimal
+    
+    init(match: Match, odds: Odds) {
+        matchID = match.matchID
+        teamA = match.teamA
+        teamB = match.teamB
+        startTime = match.startTime
+        teamAOdds = odds.teamAOdds
+        teamBOdds = odds.teamBOdds
+    }
+    
+    func updateOdds(teamAOdds: Decimal, teamBOdds: Decimal) {
+        self.teamAOdds = teamAOdds
+        self.teamBOdds = teamBOdds
     }
 }

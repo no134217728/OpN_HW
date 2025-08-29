@@ -8,17 +8,16 @@
 import Foundation
 
 actor OddsInfoActor {
-    var mainData: [MainDataObserve] = []
+    var mainData: [MainDataTableViewCellModel] = []
 
-    func setMainData(data: [MainDataObserve]) {
+    func setMainData(data: [MainDataTableViewCellModel]) {
         mainData = data
     }
     
     func updateOdds(odds: Odds) {
         guard let index = mainData.firstIndex(where: { $0.matchID == odds.matchID }) else { return }
         
-        mainData[index].teamAOdds = odds.teamAOdds
-        mainData[index].teamBOdds = odds.teamBOdds
+        mainData[index].updateOdds(teamAOdds: odds.teamAOdds, teamBOdds: odds.teamBOdds)
     }
 }
 
@@ -27,9 +26,9 @@ class OddsInfo {
     
     private let oddsQueue = DispatchQueue(label: "odds", qos: .background, attributes: .concurrent)
     
-    private var _mainData: [MainDataObserve] = []
+    private var _mainData: [MainDataTableViewCellModel] = []
     
-    var mainData: [MainDataObserve] {
+    var mainData: [MainDataTableViewCellModel] {
         get {
             return oddsQueue.sync { _mainData }
         } set {
@@ -40,7 +39,6 @@ class OddsInfo {
     func updateOdds(odds: Odds) {
         guard let index = mainData.firstIndex(where: { $0.matchID == odds.matchID }) else { return }
         
-        mainData[index].teamAOdds = odds.teamAOdds
-        mainData[index].teamBOdds = odds.teamBOdds
+        mainData[index].updateOdds(teamAOdds: odds.teamAOdds, teamBOdds: odds.teamBOdds)
     }
 }

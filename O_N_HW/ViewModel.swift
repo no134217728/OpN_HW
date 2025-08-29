@@ -98,17 +98,24 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
         
         Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
-            .sink { [unowned self] date in
-                print("Timer: \(date)")
-                let number = Int.random(in: minV...maxV)
+            .sink { [weak self] date in
+                guard let self = self else { return }
                 
-                for _ in 0...number {
+                print("Timer: \(date)")
+                
+                let number = Int.random(in: minV...maxV)
+                let interval = 1.0 / Double(max(1, number))
+
+                for i in 0...number {
                     let odds = mockSocket.generateRandomOdds()
-                    Task {
-                        await self.oddsInfo.updateOdds(odds: odds)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + interval * Double(i)) { [weak self] in
+                        guard let self = self else { return }
+                        
+                        Task {
+                            await self.oddsInfo.updateOdds(odds: odds)
+                        }
                     }
                 }
-                
             }.store(in: &cancellables)
     }
 }

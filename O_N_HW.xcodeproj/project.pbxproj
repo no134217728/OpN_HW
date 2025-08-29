@@ -11,6 +11,10 @@
 		040331962E606CCE002F3A60 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040331952E606CCE002F3A60 /* APIService.swift */; };
 		040331982E6075B8002F3A60 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040331972E6075B8002F3A60 /* Repository.swift */; };
 		040331A82E609380002F3A60 /* OddsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040331A72E609380002F3A60 /* OddsCoordinator.swift */; };
+		040331B22E61AB61002F3A60 /* O_N_HWTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040331B12E61AB61002F3A60 /* O_N_HWTests.swift */; };
+		040331B82E61AD11002F3A60 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045172532E5C63CD00F65A51 /* ViewModel.swift */; };
+		040331B92E61AD11002F3A60 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040331972E6075B8002F3A60 /* Repository.swift */; };
+		040331BA2E61AD1F002F3A60 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451724D2E5C492C00F65A51 /* Models.swift */; };
 		0434DFD32E5E0D0E004BF364 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0434DFD22E5E0D0E004BF364 /* ConfigViewController.swift */; };
 		045172382E5C452000F65A51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045172372E5C452000F65A51 /* AppDelegate.swift */; };
 		0451723A2E5C452000F65A51 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045172392E5C452000F65A51 /* SceneDelegate.swift */; };
@@ -37,11 +41,23 @@
 		0451727D2E5DBA3A00F65A51 /* FPSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451727C2E5DBA3A00F65A51 /* FPSLabel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		040331B32E61AB61002F3A60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0451722C2E5C452000F65A51 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 045172332E5C452000F65A51;
+			remoteInfo = O_N_HW;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		040331932E605EBA002F3A60 /* Misc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
 		040331952E606CCE002F3A60 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		040331972E6075B8002F3A60 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		040331A72E609380002F3A60 /* OddsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OddsCoordinator.swift; sourceTree = "<group>"; };
+		040331AF2E61AB61002F3A60 /* O_N_HWTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = O_N_HWTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		040331B12E61AB61002F3A60 /* O_N_HWTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = O_N_HWTests.swift; sourceTree = "<group>"; };
 		0434DFD22E5E0D0E004BF364 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		045172342E5C452000F65A51 /* O_N_HW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = O_N_HW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		045172372E5C452000F65A51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +88,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		040331AC2E61AB61002F3A60 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		045172312E5C452000F65A51 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -83,10 +106,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040331B02E61AB61002F3A60 /* O_N_HWTests */ = {
+			isa = PBXGroup;
+			children = (
+				040331B12E61AB61002F3A60 /* O_N_HWTests.swift */,
+			);
+			path = O_N_HWTests;
+			sourceTree = "<group>";
+		};
 		0451722B2E5C452000F65A51 = {
 			isa = PBXGroup;
 			children = (
 				045172362E5C452000F65A51 /* O_N_HW */,
+				040331B02E61AB61002F3A60 /* O_N_HWTests */,
 				045172352E5C452000F65A51 /* Products */,
 				045172682E5C7F6B00F65A51 /* Frameworks */,
 			);
@@ -96,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				045172342E5C452000F65A51 /* O_N_HW.app */,
+				040331AF2E61AB61002F3A60 /* O_N_HWTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -187,6 +220,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		040331AE2E61AB61002F3A60 /* O_N_HWTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 040331B52E61AB61002F3A60 /* Build configuration list for PBXNativeTarget "O_N_HWTests" */;
+			buildPhases = (
+				040331AB2E61AB61002F3A60 /* Sources */,
+				040331AC2E61AB61002F3A60 /* Frameworks */,
+				040331AD2E61AB61002F3A60 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				040331B42E61AB61002F3A60 /* PBXTargetDependency */,
+			);
+			name = O_N_HWTests;
+			productName = O_N_HWTests;
+			productReference = 040331AF2E61AB61002F3A60 /* O_N_HWTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		045172332E5C452000F65A51 /* O_N_HW */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 045172482E5C452200F65A51 /* Build configuration list for PBXNativeTarget "O_N_HW" */;
@@ -216,6 +267,10 @@
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
+					040331AE2E61AB61002F3A60 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 045172332E5C452000F65A51;
+					};
 					045172332E5C452000F65A51 = {
 						CreatedOnToolsVersion = 15.2;
 						LastSwiftMigration = 1520;
@@ -238,11 +293,19 @@
 			projectRoot = "";
 			targets = (
 				045172332E5C452000F65A51 /* O_N_HW */,
+				040331AE2E61AB61002F3A60 /* O_N_HWTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		040331AD2E61AB61002F3A60 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		045172322E5C452000F65A51 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -259,6 +322,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		040331AB2E61AB61002F3A60 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				040331B82E61AD11002F3A60 /* ViewModel.swift in Sources */,
+				040331B22E61AB61002F3A60 /* O_N_HWTests.swift in Sources */,
+				040331B92E61AD11002F3A60 /* Repository.swift in Sources */,
+				040331BA2E61AD1F002F3A60 /* Models.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		045172302E5C452000F65A51 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -289,6 +363,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		040331B42E61AB61002F3A60 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 045172332E5C452000F65A51 /* O_N_HW */;
+			targetProxy = 040331B32E61AB61002F3A60 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		0451723D2E5C452000F65A51 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -309,6 +391,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		040331B62E61AB61002F3A60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5YDURXS4FF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.opn.hw.O-N-HWTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/O_N_HW.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/O_N_HW";
+			};
+			name = Debug;
+		};
+		040331B72E61AB61002F3A60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5YDURXS4FF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.opn.hw.O-N-HWTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/O_N_HW.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/O_N_HW";
+			};
+			name = Release;
+		};
 		045172462E5C452200F65A51 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -492,6 +610,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		040331B52E61AB61002F3A60 /* Build configuration list for PBXNativeTarget "O_N_HWTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				040331B62E61AB61002F3A60 /* Debug */,
+				040331B72E61AB61002F3A60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0451722F2E5C452000F65A51 /* Build configuration list for PBXProject "O_N_HW" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

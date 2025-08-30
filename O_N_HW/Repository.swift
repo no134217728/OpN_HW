@@ -8,7 +8,7 @@
 import Foundation
 
 class Repository {
-    var apiService: Service
+    private let apiService: Service
     
     init(apiService: Service) {
         self.apiService = apiService

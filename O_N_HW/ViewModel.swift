@@ -118,4 +118,8 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
                 }
             }.store(in: &cancellables)
     }
+    
+    deinit {
+        print("ViewModel deinit")
+    }
 }

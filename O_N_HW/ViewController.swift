@@ -41,6 +41,10 @@ class ViewController: UIViewController {
                 self.mainDataTableView.reloadData()
             }.store(in: &cancellables)
     }
+    
+    deinit {
+        print("ViewController deinit")
+    }
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {

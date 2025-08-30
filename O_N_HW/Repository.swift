@@ -25,6 +25,10 @@ class Repository {
         
         return odds
     }
+    
+    deinit {
+        print("Repository deinit")
+    }
 }
 
 

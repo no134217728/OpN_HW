@@ -52,6 +52,10 @@ class MainDataTableViewCell: UITableViewCell {
             .assign(to: \.text, on: oddsBLabel)
             .store(in: &cancellables)
     }
+    
+    deinit {
+        print("MainDataTableViewCell deinit")
+    }
 }
 
 class MainDataTableViewCellModel: ObservableObject {
@@ -75,5 +79,9 @@ class MainDataTableViewCellModel: ObservableObject {
     func updateOdds(teamAOdds: Decimal, teamBOdds: Decimal) {
         self.teamAOdds = teamAOdds
         self.teamBOdds = teamBOdds
+    }
+    
+    deinit {
+        print("MainDataTableViewCellModel deinit")
     }
 }

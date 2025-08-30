@@ -29,4 +29,8 @@ class LocalAPIService: Service {
             return nil
         }
     }
+    
+    deinit {
+        print("LocalAPIService deinit")
+    }
 }

@@ -48,13 +48,14 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { viewModel.output.mainCellModels.count }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { viewModel.output.mainDataModels.count }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath) as! MainDataTableViewCell
         
-        let data = viewModel.output.mainCellModels[indexPath.row]
+        let data = viewModel.output.mainDataModels[indexPath.row]
         cell.configure(with: data)
+        OddsInfo.shared.matchIDandCellPosition[data.matchID] = indexPath.row
         
         return cell
     }

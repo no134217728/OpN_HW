@@ -8,9 +8,9 @@
 import Foundation
 
 actor OddsInfoActor {
-    var mainData: [MainDataTableViewCellModel] = []
+    var mainData: [MainDataModel] = []
 
-    func setMainData(data: [MainDataTableViewCellModel]) {
+    func setMainData(data: [MainDataModel]) {
         mainData = data
     }
     
@@ -26,19 +26,31 @@ class OddsInfo {
     
     private let oddsQueue = DispatchQueue(label: "odds", qos: .background, attributes: .concurrent)
     
-    private var _mainData: [MainDataTableViewCellModel] = []
+    private var _oddsLists: [MainDataModel] = []
+    private var _matchIDandCellPosition: [Int: Int] = [:]
     
-    var mainData: [MainDataTableViewCellModel] {
+    var oddsLists: [MainDataModel] {
         get {
-            return oddsQueue.sync { _mainData }
-        } set {
-            oddsQueue.async(flags: .barrier) { self._mainData = newValue }
+            return oddsQueue.sync { _oddsLists }
+        }
+        set {
+            oddsQueue.async(flags: .barrier) { self._oddsLists = newValue }
+        }
+    }
+    
+    var matchIDandCellPosition: [Int: Int] {
+        get {
+            return oddsQueue.sync { _matchIDandCellPosition }
+        }
+        set {
+            oddsQueue.async(flags: .barrier) { self._matchIDandCellPosition = newValue }
         }
     }
     
     func updateOdds(odds: Odds) {
-        guard let index = mainData.firstIndex(where: { $0.matchID == odds.matchID }) else { return }
+        guard let index = oddsLists.firstIndex(where: { $0.matchID == odds.matchID }) else { return }
         
-        mainData[index].updateOdds(teamAOdds: odds.teamAOdds, teamBOdds: odds.teamBOdds)
+        oddsLists[index].teamAOdds = odds.teamAOdds
+        oddsLists[index].teamBOdds = odds.teamBOdds
     }
 }

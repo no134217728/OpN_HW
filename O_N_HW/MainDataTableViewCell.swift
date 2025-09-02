@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Combine
 
 class MainDataTableViewCell: UITableViewCell {
     @IBOutlet weak var matchIDLabel: UILabel!
@@ -16,17 +15,7 @@ class MainDataTableViewCell: UITableViewCell {
     @IBOutlet weak var teamBNameLabel: UILabel!
     @IBOutlet weak var oddsBLabel: UILabel!
     
-    private var viewModel: MainDataTableViewCellModel? {
-        didSet {
-            bindViewModel()
-        }
-    }
-    
-    private var cancellables = Set<AnyCancellable>()
-    
-    func configure(with model: MainDataTableViewCellModel) {
-        self.viewModel = model
-        
+    func configure(with model: MainDataModel) {
         matchIDLabel.text = "\(model.matchID)"
         startTimeLabel.text = "\(model.startTime)"
         teamANameLabel.text = model.teamA
@@ -35,37 +24,18 @@ class MainDataTableViewCell: UITableViewCell {
         oddsBLabel.text = "\(model.teamBOdds)"
     }
     
-    func bindViewModel() {
-        cancellables.removeAll()
-        
-        guard let vm = viewModel else { return }
-        
-        vm.$teamAOdds
-            .map({ "\($0)" })
-            .receive(on: RunLoop.main)
-            .assign(to: \.text, on: oddsALabel)
-            .store(in: &cancellables)
-        
-        vm.$teamBOdds
-            .map({ "\($0)" })
-            .receive(on: RunLoop.main)
-            .assign(to: \.text, on: oddsBLabel)
-            .store(in: &cancellables)
-    }
-    
     deinit {
         print("MainDataTableViewCell deinit")
     }
 }
 
-class MainDataTableViewCellModel: ObservableObject {
+class MainDataModel {
     let matchID: Int
     let teamA: String
     let teamB: String
     let startTime: Date
-    
-    @Published private(set) var teamAOdds: Decimal
-    @Published private(set) var teamBOdds: Decimal
+    var teamAOdds: Decimal
+    var teamBOdds: Decimal
     
     init(match: Match, odds: Odds) {
         matchID = match.matchID

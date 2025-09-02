@@ -24,7 +24,7 @@ protocol ViewModelOutput {
     var matches: AnyPublisher<[Match], Never> { get }
     var odds: AnyPublisher<[Odds], Never> { get }
     var mainDataNotify: AnyPublisher<Void, Never> { get }
-    var mainDataModels: [MainDataModel] { get }
+    var socketPushNotify: AnyPublisher<Odds, Never> { get }
 }
 
 class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
@@ -34,14 +34,14 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
     var matches: AnyPublisher<[Match], Never> { matchesSubject.eraseToAnyPublisher() }
     var odds: AnyPublisher<[Odds], Never> { oddsSubject.eraseToAnyPublisher() }
     var mainDataNotify: AnyPublisher<Void, Never> { mainDataSubject.eraseToAnyPublisher() }
-    private(set) var mainDataModels: [MainDataModel] = []
+    var socketPushNotify: AnyPublisher<Odds, Never> { socketPushSubject.eraseToAnyPublisher() }
     
     private let repository: Repository
-    private let oddsInfo: OddsInfoActor = .init()
     
     private let matchesSubject = PassthroughSubject<[Match], Never>()
     private let oddsSubject = PassthroughSubject<[Odds], Never>()
     private let mainDataSubject = PassthroughSubject<Void, Never>()
+    private let socketPushSubject = PassthroughSubject<Odds, Never>()
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -61,11 +61,7 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
                     return MainDataModel(match: match, odds: odds)
                 }
             }.sink { [unowned self] mainData in
-                Task {
-                    await self.oddsInfo.setMainData(data: mainData)
-                }
-                
-                self.mainDataModels = mainData
+                OddsInfo.shared.oddsLists = mainData
                 self.mainDataSubject.send(())
             }.store(in: &cancellables)
     }
@@ -99,8 +95,6 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
         Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] date in
-                guard let self = self else { return }
-                
                 print("Timer: \(date)")
                 
                 let number = Int.random(in: minV...maxV)
@@ -111,9 +105,8 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
                     DispatchQueue.main.asyncAfter(deadline: .now() + interval * Double(i)) { [weak self] in
                         guard let self = self else { return }
                         
-                        Task {
-                            await self.oddsInfo.updateOdds(odds: odds)
-                        }
+                        OddsInfo.shared.updateOdds(odds: odds)
+                        self.socketPushSubject.send(odds)
                     }
                 }
             }.store(in: &cancellables)

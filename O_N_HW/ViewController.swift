@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     
     var viewModel: ViewModelType!
     
+    private let queue = DispatchQueue.init(label: "UpdateCell", qos: .background, attributes: .concurrent)
+    
     private var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -40,6 +42,25 @@ class ViewController: UIViewController {
             .sink { [unowned self] in
                 self.mainDataTableView.reloadData()
             }.store(in: &cancellables)
+        
+        viewModel.output.socketPushNotify
+            .sink { [weak self] odds in
+                self?.updateCell(odds: odds)
+            }.store(in: &cancellables)
+    }
+    
+    private func updateCell(odds: Odds) {
+        queue.async {
+            guard let cellIndex = OddsInfo.shared.matchIDandCellPosition[odds.matchID] else { return }
+            let cellIndexPath = IndexPath(row: cellIndex, section: 0)
+            
+            DispatchQueue.main.async {
+                guard let cell = self.mainDataTableView.cellForRow(at: cellIndexPath) as? MainDataTableViewCell else { return }
+                
+                cell.oddsALabel.text = "\(odds.teamAOdds)"
+                cell.oddsBLabel.text = "\(odds.teamBOdds)"
+            }
+        }
     }
     
     deinit {
@@ -48,12 +69,12 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { viewModel.output.mainDataModels.count }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { OddsInfo.shared.oddsLists.count }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath) as! MainDataTableViewCell
         
-        let data = viewModel.output.mainDataModels[indexPath.row]
+        let data = OddsInfo.shared.oddsLists[indexPath.row]
         cell.configure(with: data)
         OddsInfo.shared.matchIDandCellPosition[data.matchID] = indexPath.row
         

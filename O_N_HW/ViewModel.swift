@@ -24,7 +24,6 @@ protocol ViewModelOutput {
     var matches: AnyPublisher<[Match], Never> { get }
     var odds: AnyPublisher<[Odds], Never> { get }
     var mainDataNotify: AnyPublisher<Void, Never> { get }
-    var mainCellModels: [MainDataTableViewCellModel] { get }
 }
 
 class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
@@ -34,10 +33,8 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
     var matches: AnyPublisher<[Match], Never> { matchesSubject.eraseToAnyPublisher() }
     var odds: AnyPublisher<[Odds], Never> { oddsSubject.eraseToAnyPublisher() }
     var mainDataNotify: AnyPublisher<Void, Never> { mainDataSubject.eraseToAnyPublisher() }
-    private(set) var mainCellModels: [MainDataTableViewCellModel] = []
     
     private let repository: Repository
-    private let oddsInfo: OddsInfoActor = .init()
     
     private let matchesSubject = PassthroughSubject<[Match], Never>()
     private let oddsSubject = PassthroughSubject<[Odds], Never>()
@@ -52,20 +49,16 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
     func waitForAllData() {
         matchesSubject
             .combineLatest(oddsSubject)
-            .map { matches, odds -> [MainDataTableViewCellModel] in
+            .map { matches, odds -> [MainDataObserve] in
                 return matches.compactMap { match in
                     guard let odds = odds.first(where: { $0.matchID == match.matchID }) else {
                         return nil
                     }
                     
-                    return MainDataTableViewCellModel(match: match, odds: odds)
+                    return MainDataObserve(match: match, odds: odds)
                 }
             }.sink { [unowned self] mainData in
-                Task {
-                    await self.oddsInfo.setMainData(data: mainData)
-                }
-                
-                self.mainCellModels = mainData
+                OddsInfo.shared.mainData = mainData
                 self.mainDataSubject.send(())
             }.store(in: &cancellables)
     }
@@ -98,9 +91,7 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
         
         Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
-            .sink { [weak self] date in
-                guard let self = self else { return }
-                
+            .sink { date in
                 print("Timer: \(date)")
                 
                 let number = Int.random(in: minV...maxV)
@@ -108,12 +99,8 @@ class ViewModel: ViewModelType, ViewModelInput, ViewModelOutput {
 
                 for i in 0...number {
                     let odds = mockSocket.generateRandomOdds()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + interval * Double(i)) { [weak self] in
-                        guard let self = self else { return }
-                        
-                        Task {
-                            await self.oddsInfo.updateOdds(odds: odds)
-                        }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + interval * Double(i)) {
+                        OddsInfo.shared.updateOdds(odds: odds)
                     }
                 }
             }.store(in: &cancellables)
